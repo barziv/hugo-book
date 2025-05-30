@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const content = document.querySelector('.book-article');
         if (!content) return;
 
+        // const hashtags = [...content.textContent.matchAll(/^#\w+/g)];
+
         const calloutTypes = {
             note: { class: "callout-note", label: "Note" },
             info: { class: "callout-info", label: "Info" },
@@ -12,6 +14,13 @@ document.addEventListener('DOMContentLoaded', function () {
             tip: { class: "callout-tip", label: "Tip" },
             error: { class: "callout-error", label: "Error" },
         };
+
+        document.querySelectorAll("p").forEach(p => {
+            p.innerHTML = p.textContent.replace(/(?<=^|\s)#\S+/g, match => {
+                console.log(match);
+                return ` <span class="hashtag-label">${match}</span>`;
+            })
+        })
 
         document.querySelectorAll("blockquote").forEach(block => {
             const p = block.querySelector("p");

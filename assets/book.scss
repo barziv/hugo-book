@@ -17,13 +17,11 @@
 .obsidian-link {
     color: #2e86de;
     text-decoration: none;
-    border-bottom: 1px solid #2e86de;
     transition: all 0.2s ease;
 }
 
 .obsidian-link:hover {
     color: #1c6cb8;
-    border-bottom: 2px solid #1c6cb8;
 }
 
 .callout {
@@ -96,4 +94,13 @@
 .callout-error .callout-title::before {
     content: "❌";
     color: #ef4444;
+}
+
+.hashtag-label {
+    background-color: var(--gray-100);
+    color: var(--color-visited-link);
+    padding: 2px 6px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-family: sans-serif;
 }
