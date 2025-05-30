@@ -5,6 +5,43 @@ document.addEventListener('DOMContentLoaded', function () {
         const content = document.querySelector('.book-article');
         if (!content) return;
 
+        const calloutTypes = {
+            note: { class: "callout-note", label: "Note" },
+            info: { class: "callout-info", label: "Info" },
+            warning: { class: "callout-warning", label: "Warning" },
+            tip: { class: "callout-tip", label: "Tip" },
+            error: { class: "callout-error", label: "Error" },
+        };
+
+        document.querySelectorAll("blockquote").forEach(block => {
+            const p = block.querySelector("p");
+            if (!p) return;
+
+            const match = p.textContent.trim().match(/^\[!(\w+)\](.*)/);
+            if (!match) return;
+
+            const [, typeRaw, content] = match;
+            const type = typeRaw.toLowerCase();
+            const config = calloutTypes[type];
+
+            if (!config) return;
+
+            const wrapper = document.createElement("div");
+            wrapper.className = `callout ${config.class}`;
+
+            const title = document.createElement("div");
+            title.className = "callout-title";
+            title.textContent = config.label;
+
+            const body = document.createElement("div");
+            body.innerHTML = p.innerHTML.replace(/^\[!\w+\]/, "").trim();
+
+            wrapper.appendChild(title);
+            wrapper.appendChild(body);
+
+            block.replaceWith(wrapper);
+        });
+
         // Regular expressions for different types of links
         const docLinkRegex = /\[\[([^\]]+)\]\]/g;
         const sectionLinkRegex = /\[\[#([^\]]+)\]\]/g;

@@ -25,3 +25,75 @@
     color: #1c6cb8;
     border-bottom: 2px solid #1c6cb8;
 }
+
+.callout {
+    border: 4px solid;
+    border-left: 4px solid;
+    padding: 1em;
+    margin: 1em 0;
+    border-radius: 0.5em;
+    font-family: system-ui, sans-serif;
+    background-color: var(--body-background);
+}
+
+.callout-title {
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    display: flex;
+    align-items: center;
+}
+
+.callout-title::before {
+    margin-right: 0.5em;
+}
+
+/* Type-specific styles */
+.callout-note {
+    border-color: #3b82f6;
+    background-color: var(--body-background);
+}
+
+.callout-info {
+    border-color: #0ea5e9;
+    background-color: var(--body-background);
+}
+
+.callout-warning {
+    border-color: #f59e0b;
+    background-color: var(--body-background);
+}
+
+.callout-tip {
+    border-color: #10b981;
+    background-color: var(--body-background);
+}
+
+.callout-error {
+    border-color: #ef4444;
+    background-color: var(--body-background);
+}
+
+.callout-note .callout-title::before {
+    content: "📝";
+    color: #3b82f6;
+}
+
+.callout-info .callout-title::before {
+    content: "ℹ️";
+    color: #0ea5e9;
+}
+
+.callout-warning .callout-title::before {
+    content: "⚠️";
+    color: #f59e0b;
+}
+
+.callout-tip .callout-title::before {
+    content: "💡";
+    color: #10b981;
+}
+
+.callout-error .callout-title::before {
+    content: "❌";
+    color: #ef4444;
+}
