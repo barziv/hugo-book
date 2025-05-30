@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     console.log("Display:", display);
                     console.log("----");
                 }
-
                 // Replace section links
                 text = text.replace(sectionLinkRegex, function (match, sectionName) {
                     modified = true;
@@ -36,7 +35,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Replace document links
                 text = text.replace(docLinkRegex, function (match, docName) {
                     modified = true;
-                    return `<a href="/${docName.toLowerCase().replace(/\s+/g, '-')}" class="obsidian-link">${docName}</a>`;
+                    const name = docName.split('|').at(-1);
+                    const href = docName.split('|').at(0);
+                    return `<a href="/${href.toLowerCase().replace(/\s+/g, '-')}" class="obsidian-link">${name}</a>`;
                 });
 
                 if (modified) {
@@ -49,8 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             } else if (node.nodeType === Node.ELEMENT_NODE) {
                 // Skip processing for certain elements
-                // if (node.tagName === 'A' || node.tagName === 'CODE' || node.tagName === 'PRE') {
-                if (node.tagName === 'A' || node.tagName === 'PRE') {
+                if (node.tagName === 'A' || node.tagName === 'CODE' || node.tagName === 'PRE') {
                     return;
                 }
                 // console.log(node.childNodes);
