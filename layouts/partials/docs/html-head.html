@@ -35,6 +35,9 @@ resources.Fingerprint }}
 <script defer src="{{ $searchJS.RelPermalink }}" {{ template "integrity" $searchJS }}></script>
 {{ end -}}
 
+{{- $obsidianLinksJS := resources.Get "obsidian-links.js" | resources.Minify | resources.Fingerprint }}
+<script defer src="{{ $obsidianLinksJS.RelPermalink }}" {{ template "integrity" $obsidianLinksJS }}></script>
+
 {{- $directionJSFile := printf "%s.language-direction.js" .Language.Lang }}
 {{- $directionJS := resources.Get "language-direction.js" | resources.ExecuteAsTemplate $directionJSFile . |
 resources.Minify | resources.Fingerprint }}
