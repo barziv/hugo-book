@@ -38,6 +38,11 @@ resources.Fingerprint }}
 {{- $obsidianLinksJS := resources.Get "obsidian-links.js" | resources.Minify | resources.Fingerprint }}
 <script defer src="{{ $obsidianLinksJS.RelPermalink }}" {{ template "integrity" $obsidianLinksJS }}></script>
 
+{{- $directionJSFile := printf "%s.language-direction.js" .Language.Lang }}
+{{- $directionJS := resources.Get "language-direction.js" | resources.ExecuteAsTemplate $directionJSFile . |
+resources.Minify | resources.Fingerprint }}
+<script defer src="{{ $directionJS.RelPermalink }}" {{ template "integrity" $directionJS }}></script>
+
 {{- if .Site.Params.BookServiceWorker -}}
 {{- $swJS := resources.Get "sw-register.js" | resources.ExecuteAsTemplate "sw.js" . | resources.Minify |
 resources.Fingerprint }}
